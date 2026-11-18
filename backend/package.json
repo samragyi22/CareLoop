@@ -1,0 +1,36 @@
+{
+  "name": "careloop-backend",
+  "version": "1.0.0",
+  "description": "CareLoop REST API and Workflow Engine",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test --test-concurrency=1 \"test/**/*.test.js\"",
+    "seed:all": "node src/scripts/seedAll.js",
+    "seed:users": "node src/scripts/seedUsers.js",
+    "seed:appointments": "node src/scripts/seedAppointments.js",
+    "seed:patients": "node src/scripts/seedPatientUsers.js",
+    "seed:care-plans": "node src/scripts/seedCarePlans.js",
+    "seed:directory": "node src/scripts/seedDirectory.js",
+    "demo": "node src/scripts/demo.js",
+    "dev:demo": "node src/scripts/demo.js --api-only",
+    "eval": "node eval/run.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.7.0",
+    "proxy-addr": "^2.0.8",
+    "twilio": "^6.2.0"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.3.0"
+  }
+}

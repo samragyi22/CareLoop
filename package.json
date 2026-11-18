@@ -1,0 +1,28 @@
+{
+  "name": "careloop",
+  "version": "1.0.0",
+  "description": "CareLoop \u2014 Voice-first agentic healthcare coordination platform",
+  "scripts": {
+    "demo": "node backend/src/scripts/demo.js",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "start:backend": "npm --prefix backend start",
+    "build:frontend": "npm --prefix frontend run build",
+    "test": "npm --prefix backend test",
+    "seed:all": "npm --prefix backend run seed:all",
+    "seed:users": "npm --prefix backend run seed:users",
+    "seed:appointments": "npm --prefix backend run seed:appointments",
+    "seed:patients": "npm --prefix backend run seed:patients",
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "eval": "node backend/eval/run.js"
+  },
+  "keywords": [
+    "careloop",
+    "healthcare",
+    "ai",
+    "agentic",
+    "voice"
+  ],
+  "author": "CareLoop Team",
+  "license": "ISC"
+}
