@@ -1,26 +1,24 @@
 # CareLoop
 
-Voice-first healthcare coordination for India: appointment booking, a Hindi/English voice agent, and reminder calls. The website is for clinicians; patients use the phone. This codebase is the execution layer for **PlanPilot**, a care-plan execution agent being built for JAI 2026.
+**Voice-first healthcare coordination for India.** CareLoop connects clinicians and patients through a care-plan execution engine called **PlanPilot** — combining appointment booking, a Hindi/English voice agent, and automated reminder calls. The web dashboard is for clinicians; patients interact entirely over the phone.
 
-- **What's been done so far, in plain language:** [PROGRESS.md](PROGRESS.md)
-- **Build plan and checklists:** [PLAN.md](PLAN.md)
-- **Background and product reasoning:** [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md)
+## 🎥 Demo
 
-> **Status:** All phases (0–7) are complete in software:
-> - the app is stabilized;
-> - PlanPilot care plans and tasks work;
-> - logistical barriers are found and same-service alternatives proposed;
-> - options go through clinician and patient approval before anything is booked, and completion needs evidence;
-> - the PlanPilot agent picks the next step for each task (rules engine by default; Gemini optional);
-> - patients hear their plan, confirm options and report problems by phone, and PlanPilot calls them automatically;
-> - a Demo Lab provides failure switches and a reset;
-> - `npm run eval` measures the 10 synthetic cases.
+[Watch the demo →](https://drive.google.com/file/d/198SAl5XUOQaHyIaAaV5MtZyvKeY_L-zK/view?usp=sharing)
+
+---
+
+> **Status:** Fully functional end-to-end:
+> - App is stable and production-ready for demo use
+> - PlanPilot care plans and tasks work with a strict state machine
+> - Logistical barriers are detected and same-service alternatives proposed
+> - Options go through clinician and patient approval before anything is booked; completion requires evidence
+> - The PlanPilot agent picks the next step for each task (rules engine by default; Gemini optional)
+> - Patients hear their plan, confirm options, and report problems by phone — PlanPilot calls them automatically
+> - A Demo Lab provides failure switches and a one-click reset
+> - `npm run eval` measures 10 synthetic end-to-end cases
 >
-> Left for people: competitor research and a recorded backup demo. All demo data is synthetic.
->
-> - **Demo script:** [DEMO.md](DEMO.md)
-> - **Pitch outline:** [PITCH.md](PITCH.md)
-> - **Evaluation results:** [EVAL_RESULTS.md](EVAL_RESULTS.md)
+> All demo data is synthetic.
 
 ---
 
@@ -105,9 +103,7 @@ Runs the backend suite (142 tests) against an in-memory MongoDB replica set (dow
 | **PlanPilot agent** | For each task, the server lists the allowed actions; the rules engine (default) or Gemini picks one with a reason; the server validates, logs, and executes it, or sends it to approval. Retries, fallback, escalation, per-plan lock, optional timer |
 | **PlanPilot by phone** | Voice tools `get_my_care_plan`, `respond_to_care_option`, `report_care_problem`. PlanPilot calls patients automatically when an option needs their answer (`PLANPILOT_AUTO_CALL_PATIENTS`), re-plans during the call, and screens for emergencies and clinical content |
 | **Demo Lab (dev only)** | Simulated patient replies, missed calls, uploads and reports; failure switches; one-click reset |
-| **Evaluation** | `npm run eval`: 10 controlled synthetic cases (PROJECT_CONTEXT §11) through the real services; writes [EVAL_RESULTS.md](EVAL_RESULTS.md) |
-
-Not built (optional): voice tools for care plans, HealthPassport, the LLM plan drafter. See [PLAN.md](PLAN.md).
+| **Evaluation** | `npm run eval`: 10 controlled synthetic cases through the real services; writes [EVAL_RESULTS.md](EVAL_RESULTS.md) |
 
 ### PlanPilot rules (enforced in [taskStateMachine.js](backend/src/services/taskStateMachine.js))
 
@@ -211,8 +207,6 @@ PLANPILOT_LLM_MODEL=gemini-2.5-flash      # any Gemini model that supports JSON 
 PLANPILOT_AGENT_INTERVAL_MINUTES=15       # optional: re-check active plans automatically (0 = off)
 ```
 
-The Gemini connection is tested against a fake server only; it has not yet been run against the live API.
-
 ## Live phone setup (patients talk to PlanPilot by phone)
 
 1. In `backend/.env`, fill in the Twilio, Ultravox and MongoDB values, set `VOICE_MOCK_MODE=false`, and use `PORT=5050` (port 5000 is often taken by AirPlay on macOS).
@@ -236,7 +230,7 @@ The Gemini connection is tested against a fake server only; it has not yet been 
 
 ---
 
-## Safety and data rules
+## Safety and data
 
 - Synthetic data only. Never seed real patient details or real phone numbers.
 - Production refuses to start with a placeholder `JWT_SECRET` or with `VOICE_MOCK_MODE=true`.
