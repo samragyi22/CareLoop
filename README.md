@@ -2,6 +2,8 @@
 
 **Voice-first healthcare coordination for India.** CareLoop connects clinicians and patients through a care-plan execution engine called **PlanPilot** — combining appointment booking, a Hindi/English voice agent, and automated reminder calls. The web dashboard is for clinicians; patients interact entirely over the phone.
 
+**Off Campus code: 8GP36K**
+
 ## 🎥 Demo
 
 [Watch the demo →](https://drive.google.com/file/d/198SAl5XUOQaHyIaAaV5MtZyvKeY_L-zK/view?usp=sharing)
